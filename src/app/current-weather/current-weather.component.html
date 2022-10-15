@@ -1,0 +1,40 @@
+
+<div class="container" *ngIf="current">
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <input type="text" class="form-control" placeholder="Enter City" [(ngModel)]="inputCity">
+      <button class="btn btn-primary mt-2"  (click)="searchWeatherInfo()">Search</button>
+    </div>
+
+  </div>
+  <div class="row mt-2">
+    <span> {{current.city}} , {{current.country}}</span>
+    <span>{{current.date | date:'fullDate'}}</span>
+
+  </div>
+  <div class="row ">
+    <div class="col-md-8 offset-md-2 mt-5">
+      <img [src]="current.image" alt="">
+      <span>   {{ current.temperature | number : '1.0-0'}} * F</span>
+    </div>
+
+  </div>
+  <div class="row">
+     <div class="col-md-8 offset-md-2 mt-2">
+      {{ current.description  | uppercase}}
+     </div>
+  </div>
+
+</div>
+
+<div *ngIf="!current" class="container">
+
+
+  <div class="row ">
+    <div class="col-md-8 offset-md-2 mt-5">
+      No data
+    </div>
+
+
+</div>
