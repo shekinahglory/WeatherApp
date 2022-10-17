@@ -1,10 +1,20 @@
 version: 2.1
+orbs:
+  broser-tools: circleci/broser-tolls@1.2.3
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10.1-browsers
+      - image: cimg/node:16.13.1-browsers
     working_directory: ~/repo
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+
+      - run:
+          command: |
+            google-chrome --version
+            chromedriver --version
+          name: Check install
       - checkout
 
       - restore_cache:
@@ -21,7 +31,11 @@ jobs:
           paths:
             - ~/.npm
 
+      - run: npm install
+
       - run: npm run build
+
+      - run: npm run test
 
       - run:
           name: Tar & Gzip compiled app
