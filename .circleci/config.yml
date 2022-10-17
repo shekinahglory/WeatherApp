@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  broser-tools: circleci/broser-tolls@1.2.3
+  browser-tools: circleci/broser-tolls@1.2.3
 jobs:
   build:
     docker:
